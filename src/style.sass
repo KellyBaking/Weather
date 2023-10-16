@@ -1,0 +1,436 @@
+@mixin size($w,$h)
+  width: $w
+  height: $h
+  
+$base_font_size: 10px
+$rainbow-red: #FFA4A4
+$rainbow-orange: #FFCEA6
+$rainbow-yellow:#FFFFA9
+$rainbow-green: #C8FFAB
+$rainbow-blue: #AEF0FF
+$rainbow-indigo: #B0D0FF
+$rainbow-violet: #D8B3FF
+
+$color-sun: #F4D967
+$color_moon: #edeac0
+$color_bg:  #333333
+
+$color_black: #222
+$color_darkgray: #D8D8D8
+$color_lightgray: #E4E4E4
+$color_purple: #B096AB
+$color_pink: #D8ACB6
+$color_orange: #EEBFB9
+$color_blue: #6487ce
+$color_darkblue: #777B96
+
+$color_checked_green: #98e6d3
+$color_checked_blue: #98d3e6
+$color_checked_yellow: #fafaea
+
+
+*
+  position: relative
+  // border: 1px solid
+  font-family: Calibri
+
+
+body, html
+  +size(100%,100%)
+  padding: 0px
+  margin: 0px
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: $color_bg
+
+
+.daybox
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.5)
+  border-radius: 10px
+  height: 40%
+  max-height: 350px
+  display: flex
+  background: linear-gradient(45deg,$color_pink,$color_purple,$color_orange,$color_darkblue)
+  background-size: 100% 300%
+  animation: sky 10s infinite linear alternate
+  &:hover
+    .right
+      +size(400px,100%)
+      .dayweather
+        top: 0px
+        opacity: 1
+      svg.line
+        text
+          transform: translate(-5px,20px)
+          opacity: 1
+@keyframes sky
+  0%
+    background-position: 100% 0%
+  100%
+    background-position: 100% 100%
+  
+.left
+  +size(250px,100%)
+  display: inline-block
+  overflow: hidden
+  border-radius: 10px
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.5)
+  
+  .hello, .temp, .temp_detail
+    display: inline-block  
+  .hello
+    position: absolute
+    top: 20px
+    right: 20px
+    font-size: $base_font_size*1.8
+    font-weight: 700
+    letter-spacing: 1px
+    color: rgba(#662900,0.7)
+
+    
+  .temp
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+    font-size: $base_font_size*8
+    position: absolute
+    z-index: 1
+    letter-spacing: 1px
+  .temp_detail
+    position: absolute
+    left: 0
+    right: 0
+    margin: auto
+    margin: auto
+    bottom: 10px
+    text-align: center
+    font-size: $base_font_size*1
+    letter-spacing: 1px
+    color: rgba($color_black,0.8)
+  .loc
+    font-size: $base_font_size*1.5
+    font-weight: 800
+    
+  .moon
+    +size(60px,60px)
+    position: absolute
+    border-radius: 100%
+    top: 30px
+    left: 20px
+    animation: moon_move 40s infinite alternate linear
+    
+  @keyframes moon_move
+    0%
+      box-shadow: 60px 30px 5px $color_moon
+      transform: translate(-60px,-30px)
+    100%
+      box-shadow: -60px -30px 5px $color_moon
+      transform: translate(60px,30px)
+  
+  .rain
+    +size(2px,10px)
+    position: absolute
+    left: 10px
+    animation: raindrop 3s infinite linear
+    background-color: $color_blue
+  .rain2
+    left: 70px
+    animation-delay: -2s
+  .rain3
+    left: 130px
+    animation-delay: -1s
+  .rain4
+    left: 190px
+    animation-delay: -0.5s
+  .rain5
+    left: 240px
+    animation-delay: -1.4s
+  
+  @keyframes raindrop
+    0%
+      transform: translateY(0px)
+    50%
+       opacity: 0.5
+    100%
+      transform: translateY(300px)
+      opacity: 0
+    
+  .cloud
+    +size(100px,30px)
+    position: absolute
+    border-radius: 20px
+    top: 120px
+    animation: cloud_move 20s infinite linear
+    background-color: $color_darkgray
+    z-index: 0
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.3)
+    &::before, &::after
+      content:""
+      display: block
+      +size(50px,50px)
+      // border: 1px solid
+      border-radius: 100px
+      position: absolute
+      background-color: $color_darkgray
+    &::before
+      top: -30px
+      left: 10px
+    &::after
+      top: -25px
+      left: 40px
+      
+  @keyframes cloud_move
+    0%
+      transform: translate(-100px,0px)
+    100%
+      transform: translate(250px,50px)
+  
+  .rainbow
+    +size(100%,200px)
+    position: absolute
+    bottom: 0px
+    opacity: 0
+    .circle
+      +size(250px,200px)
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      top: 60px
+      border-radius: 100%
+      border: 10px solid
+
+    .circle1
+      border-color: $rainbow-red
+    .circle2
+      border-color: $rainbow-orange
+      top: 70px
+    .circle3
+      border-color: $rainbow-yellow
+      top: 80px
+    .circle4
+      border-color: $rainbow-green
+      top: 90px
+    .circle5
+      border-color: $rainbow-blue
+      top: 100px
+    .circle6
+      border-color: $rainbow-indigo
+      top: 110px
+    .circle7
+      border-color: $rainbow-violet
+      top: 120px
+  .sun
+    position: absolute
+    +size(80px,80px)
+    top: 40px
+    left: 80px
+    opacity: 0
+      
+    .sun1
+      +size(80px,80px)
+      position: absolute
+      border-radius: 100px
+      background-color: $color-sun
+      opacity: 0.3
+      animation: sunshine 2s infinite
+      
+    .sun2
+      +size(65px,65px)
+      border-radius: 100px
+      position: absolute
+      background-color: $color-sun
+      opacity: 0.5
+      top: 8px
+      left: 8px
+      animation: sunshine 2s infinite
+    .sun3
+      +size(55px,55px)
+      border-radius: 100px
+      position: absolute
+      background-color: $color-sun
+      opacity: 1
+      top: 13px
+      left: 13px
+      
+    
+      
+      
+  @keyframes sunshine
+    0%
+      transform: scale(1)
+    50%
+      transform: scale(1.1)
+    100%
+      transform: scale(1)
+
+
+    
+  
+.right
+  +size(0px,100%)
+  display: inline-block
+  overflow: hidden
+  border-radius: 0px 10px 10px 0px
+  transition: 1s
+
+.week
+  display: flex
+  justify-content: center
+  text-align: center
+  position: absolute
+  width: 100%
+  top: 80px
+  
+
+.dayweather
+  display: inline-block
+  width: calc(100% / 7 - 5px)
+  top: 30px
+  opacity: 0
+  transition: 1s
+  
+.dayweather:nth-child(1)
+  transition-delay: 0.2s
+.dayweather:nth-child(2)
+  transition-delay: 0.4s
+.dayweather:nth-child(3)
+  transition-delay: 0.6s
+.dayweather:nth-child(4)
+  transition-delay: 0.8s
+.dayweather:nth-child(5)
+  transition-delay: 1s
+.dayweather:nth-child(6)
+  transition-delay: 1.2s
+.dayweather:nth-child(7)
+  transition-delay: 1.4s
+  
+  
+  
+  
+.day
+  font-size: $base_font_size*0.8
+  letter-spacing: 1px
+  color: rgba($color_black,0.8)
+  font-weight: 800
+  
+.icon
+  width: 100%
+  max-width: 40px
+  height: 40px
+  top: 5px
+  .rain
+    stroke-width: 2px
+    stroke: $color_blue
+    animation: svg_raindrop 1.5s infinite linear
+  .cloud
+    animation: svg_cloudmove 3s infinite linear
+    fill: $color_lightgray
+    
+  .thunder
+    fill: none
+    stroke-width: 6px
+    stroke: $color-sun
+    animation: svg_thunder 3s infinite linear
+  .sun
+    stroke-width: 20px
+    stroke: rgba($color_sun,0.8)
+    stroke-dasharray: 3px
+    fill: $color_sun
+    // transform-origin: -5px 0px
+    // 當太陽中心不在0,0時需要調整transform-origin
+    // 不然以此例來說動畫會跑掉
+    
+  @keyframes svg_raindrop
+    0%
+      transform: translateY(0px)
+    50%
+       opacity: 0.5
+    100%
+      transform: translateY(50px)
+      opacity: 0  
+  
+  @keyframes svg_cloudmove
+    0%
+      transform: translateY(0px)
+    50%
+      transform: translateY(-8px)
+    100%
+      transform: translateY(0px)
+    
+  @keyframes svg_thunder
+    0%
+      opacity: 1
+    50%
+      opacity: 0
+    100%
+      opacity: 1
+    
+svg.line
+  width: 100%
+  position: absolute
+  bottom: 30px
+  polyline
+    fill: none
+    stroke: rgba($color_black,0.5)
+  text
+    transform: translate(-5px,40px)
+    opacity: 0
+    transition: 1s 0.5s
+    fill: rgba($color_black,0.8)
+    stroke: none
+    font-size: $base_font_size*1.2
+    
+  circle
+    fill: rgba($color_black,0.8)
+
+  
+label
+  cursor: pointer
+#switch
+  display: none
+    
+.rainbow, .sun, .cloud, .moon, .hello
+  transition: 1.5s
+svg.line
+  circle
+    transition: 0.5s
+  polyline
+    transition: 0.5s 0.5s
+
+#switch:checked+.left
+  background: linear-gradient(45deg,$color_checked_green,$color_checked_yellow 20%,$color_checked_blue)
+  background-size: 100% 300%
+  animation: sky 10s infinite linear alternate 
+
+  .rainbow
+    opacity: 0.5
+  .sun
+    opacity: 1
+  .cloud, .moon
+    opacity: 0
+  .rain
+    background-color: transparent
+  .hello
+    animation: nein 1.5s 1 both linear
+    
+  @keyframes nein
+    0%
+      opacity: 0
+    100%
+      transform: translateX(-110px)
+      opacity: 1
+
+    
+  +.right
+    background: linear-gradient(45deg,$color_checked_green,$color_checked_yellow 20%,$color_checked_blue)
+    background-size: 100% 300%
+    animation: sky 10s infinite linear alternate 
+    .cloud
+      fill: #646882
+    svg.line
+      circle
+        fill: rgba(#cc6699,0.8)
+      polyline
+        stroke: rgba(#cc6699,0.5)
+  
